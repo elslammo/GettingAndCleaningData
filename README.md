@@ -19,13 +19,13 @@ The final submission includes the following:
     The final tidy data set created from running the **run_analysis.R** script. Available from the Coursera course Peer Assessment screen.
     
 
-Notes on the Files
+Notes
 -------------------
 * Before running the **run_analysis.R** script, the original data files must be downloaded and extracted. Full details are included in the **CodeBook.md** file.
 
-* The submitted tidy data set can be most easily viewed by first downloading the **tidy\_data\_set.txt** file  and running the following command in R:
+* The submitted tidy data set can be most easily viewed by first downloading the **tidy\_data\_set.txt** file  and running the following commands in R:
 
-    data <- read.table(<path-to-file>, header = TRUE)
-    View(data)
+        data <- read.table(path-to-file, header = TRUE)  
+        View(data)
 
-<path-to-file> must be replaced by the full path to the file on your local computer.
+**path-to-file** must be replaced by the full path to the file on your local computer.

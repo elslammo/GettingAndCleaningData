@@ -1,5 +1,4 @@
-Coursera class 'Getting and Cleaning Data'  
-Final Course Project - CodeBook
+Coursera class 'Getting and Cleaning Data' / Final Course Project - CodeBook
 ===========================================================================
 Author: Lisa Salmon  //  Date: October 26, 2014
 
@@ -15,9 +14,9 @@ Original Data Set
 -----------------
 The original raw data is the "[Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)" available from the [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/index.html). As stated in the abstract, it is a "Human Activity Recognition database built from the recordings of 30 subjects performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors."
 
-The original data set used in this process can be downloaded [HERE](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).
+The original data set can be downloaded [HERE](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).
 
-The original data set inclues multiple files and folders, with TEST data separated from TRAINING data. Each of these sets includes three individual files for activity measurements, activity labels, and the subject (person) performing the activity. 
+The original data set inclues multiple files and folders, with *test* data separated from *training* data. Each test/training set includes three separate files for activity measurements, activity labels, and the subject performing the activity. 
 
 The downloaded data extracts into the following folders and files:
 
@@ -41,7 +40,7 @@ The original feature set includes 10,299 observations of 561 separate measuremen
 New Tidy Data Set
 -----------------
 #### Data Dimensions ####
-The new tidy data set includes a subset of just 66 feature measurements from the original -- only the Standard Deviation, and the Mean Value measurements, as requested in the assignment specification. After reading the original data description, this was interpreted to mean any measurement that included the exact character string "mean()" or "std()" in the name. 
+The new tidy data set includes a subset of just 66 feature measurements from the original -- only the *standard deviation*, and the *mean value* measurements, as requested in the assignment specification. After reading the original data description, this was interpreted to mean any measurement that included the exact character string "mean()" or "std()" in the name. 
 
 The final tidy data set includes the overall average for each of the 66 feature measurements grouped by    subject AND activity. This results in a table with 68 columns (subject + activity + 66 feature averages) and 180 rows (30 subjects X 6 activities).
 
@@ -140,15 +139,18 @@ Freq\_BodyGyroJerkMag\_StdDeviation
 
 Process
 --------
-These are the steps followed in the **run_analysis.R** file, to transform the original data into the tidy data set. The original data files must first be downloaded and extracted to a folder called **data** which is in the same R working directory as the **run_analysis.R** file.
+These are the steps followed in the **run_analysis.R** file, to transform the original data into the tidy data set. 
+
+Before running the script, the original data files must first be downloaded and extracted to a folder called **data** which must be in the same working directory as the **run_analysis.R** file.
 
 **1. Read the 6 relevant data files from the original data set into 6 different data frames.**   
-    testSubjects  
-    trainSubjects  
-    testFeatures  
-    trainFeatures  
-    testLabels  
-    trainLabels  
+
+test/subject_test.txt       >  testSubjects
+test/X_test.txt             >  testFeatures
+test/y_test.txt             >  testLabels
+train/subject_train.txt     >  trainSubjects
+train/X_train.txt           >  trainFeatures
+train/y_train.txt           >  trainLabels
     
 **2. Combine the test and training sets** into 3 data frames which include all observations. The same order is maintained in all sets, so observations can be correctly associated across all data frames.  
     allSubjects    

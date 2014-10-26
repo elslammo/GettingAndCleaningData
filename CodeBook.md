@@ -145,15 +145,16 @@ Before running the script, the original data files must first be downloaded and 
 
 **1. Read the 6 relevant data files from the original data set into 6 different data frames.**   
 
-test/subject_test.txt       >  testSubjects  
-test/X_test.txt             >  testFeatures  
-test/y_test.txt             >  testLabels  
-train/subject_train.txt     >  trainSubjects  
-train/X_train.txt           >  trainFeatures  
-train/y_train.txt           >  trainLabels  
+    test/subject_test.txt       >  testSubjects  
+    test/X_test.txt             >  testFeatures  
+    test/y_test.txt             >  testLabels  
+    train/subject_train.txt     >  trainSubjects  
+    train/X_train.txt           >  trainFeatures  
+    train/y_train.txt           >  trainLabels  
     
 **2. Combine the test and training sets** into 3 data frames which include all observations.  
 The same order is maintained in all sets, so observations can be correctly associated across all data frames.  
+
     testSubjects + trainSubjects = allSubjects    
     testFeatures + trainFeatures = allFeatures  
     testLabels + trainLabels = allLabels  
@@ -171,15 +172,15 @@ Includes a **cleanColName** function that receives a column name from the origin
     
 A for loop runs through each element of the **featureNames** vector, passes it to the **cleanColName** function, and populates a **cleanNames** vector with the returned value, maintaining order.
     
-The old data set feature names are replaced in the **subsetFeatures** data frame with the values of the **cleanNames** vector, using the **colnames()** function.
+The new clean names are set as the column names of the **subsetFeatures** data frame, using the **colnames()** function.
 
 **5. Add human-readable activity names to each observation.**
 
-The current **allLabels** data contains the activity NUMBER for each observation, but we want to change this to be the activity NAME and add it as a new column in our subset data frame. The 6 activity names are read into a table from the **activity_labels.txt** file and the actual label names are converted into an **activityNameVector** vector of length six, where the order of the vector matches the activity number in the **allLabels** data.
+    The original **allLabels** data contains the activity NUMBER for each observation, but we want to change this to be the activity NAME and add it as a new column in our subset data frame. The 6 activity names are read into a table from the **activity_labels.txt** file and converted into an **activityNameVector** vector of length six, where the order of the vector matches the activity number in the **allLabels** data.
     
-A for loop runs through each element of the **allLabels** number values, and a new **labelNameVector** is populated using the **activityNameVector** key that matches the number. 
+    A for loop runs through each element of the **allLabels** number values, and a new **labelNameVector** is populated using the **activityNameVector** key that matches the number. 
     
-Using the **cbind()** function, the **subsetFeatures** and **activityNameVector** values are combined into a new final data frame called **subsetData**. The column name for activity names is set to "ActivityName".
+    Using the **cbind()** function, the **subsetFeatures** and **activityNameVector** values are combined into a new final data frame called **subsetData**. The column name for activity names is set to "ActivityName".
 
 **6. Add subject numbers to the subset data frame.**
 

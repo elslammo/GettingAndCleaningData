@@ -159,7 +159,7 @@ The same order is maintained in all sets, so observations can be correctly assoc
     testFeatures + trainFeatures    = allFeatures  
     testLabels + trainLabels        = allLabels  
     
-####3. Create a *subsetFeatures* data frame which contains ONLY the standard deviation and mean value measurements.####  
+####3. Create a *subsetFeatures* data frame which contains ONLY the standard deviation and mean value measurements.####
 
 First reads the feature names from the **features.txt** file into a data frame. Then uses the grepl() function, to create a boolean vector which indicates the column names that include either **-std()** or **-mean()** in the original feature name.
     
@@ -175,7 +175,7 @@ The new clean names are set as the column names of the **subsetFeatures** data f
 
 ####5. Add activity names to each observation.####
 
-The original **allLabels** data contains the activity NUMBER for each observation, but we want to change this to be the activity NAME and add it as a new column in our subset data frame. The 6 activity names are read into a table from the **activity_labels.txt** file and converted into an **activityNameVector** vector of length six, where the order of the vector matches the activity number in the **allLabels** data.
+The original **allLabels** data contains the activity *number* for each observation, but we want to change this to be the activity *name* and add it as a new column in our subset data frame. The 6 activity names are read into a table from the **activity_labels.txt** file and converted into an **activityNameVector** vector of length six, where the order of the vector matches the activity number in the **allLabels** data.
     
 A for loop runs through each element of the **allLabels** number values, and a new **labelNameVector** is populated using the **activityNameVector** key that matches the number. 
     

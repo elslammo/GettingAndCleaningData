@@ -64,7 +64,7 @@ In the original data the acceleration signal was then separated into body and gr
 
 Finally, again as stated in the original data, a Fast Fourier Transform (FFT) was applied to some of the signals. In our tidy data set, these measurement names are preceded by **Freq\_** to indicate that the value is in the frequency domain.
 
-The full resulting set of column names in the tidy data set is:
+**The full resulting set of column names in the tidy data set is:**
 
 Subject  
 ActivityName  
@@ -161,11 +161,11 @@ The same order is maintained in all sets, so observations can be correctly assoc
     
 ####3. Create a *subsetFeatures* data frame which contains ONLY the standard deviation and mean value measurements.####
 
-First reads the feature names from the **features.txt** file into a data frame. Then uses the grepl() function, to create a boolean vector which indicates the column names that include either **-std()** or **-mean()** in the original feature name.
+First reads the feature names from the **features.txt** file into a data frame, **featureNames**. Then uses the **grepl()** function, to create a boolean vector which indicates the column names that include either **-std()** or **-mean()** in the original feature name.
     
 The boolean vector is used to extract the appropriate columns from the **allFeatures** data frame, as well as the original data column names from the **featureNames** data frame.
 
-####4. Clean up the feature names to be more human readable.####
+####4. Clean up the feature names to be easier to read/understand.####
 
 Includes a **cleanColName()** function that receives a column name from the original data and returns an easier-to-read tidy data version as described in the **Features** section above. 
     
@@ -185,7 +185,7 @@ Using the **cbind()** function, the **subsetFeatures** and **activityNameVector*
 
 The **allSubjects** number column is added to the **subsetData** data frame as the first column, and the column name is set to "Subject".
     
-At this point all the separate data from the multiple original data files has been combined into one tidy data set, with human-readable activity names, and column names that are also more human-readable than before.
+At this point all the separate data from the multiple original data files has been combined into one tidy data set, with human-readable activity names, and column names that are also easier to read than before.
     
 ####7. Create a second tidy data set that contains the average of all feature measurements, grouped by subject AND activity.####
 

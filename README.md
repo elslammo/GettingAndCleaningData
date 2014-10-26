@@ -28,4 +28,4 @@ Notes
         data <- read.table(path-to-file, header = TRUE)  
         View(data)
 
-**path-to-file** must be replaced by the full path to the file on your local computer.
+    **path-to-file** must be replaced by the full path to the file on your local computer.

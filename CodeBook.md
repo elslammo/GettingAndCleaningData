@@ -155,20 +155,19 @@ Before running the script, the original data files must first be downloaded and 
 **2. Combine the test and training sets** into 3 data frames which include all observations.  
 The same order is maintained in all sets, so observations can be correctly associated across all data frames.  
 
-    testSubjects + trainSubjects = allSubjects    
-    testFeatures + trainFeatures = allFeatures  
-    testLabels + trainLabels = allLabels  
+    testSubjects + trainSubjects    = allSubjects    
+    testFeatures + trainFeatures    = allFeatures  
+    testLabels + trainLabels        = allLabels  
     
-**3. Create a feature subset which contains ONLY the standard deviation and mean value measurements.**  
-This dataframe is called **subsetFeatures**.
+**3. Create a *subsetFeatures* data frame which contains ONLY the standard deviation and mean value measurements.**  
 
-First reads the feature names from the **features.txt** into a data frame. Then uses the grepl() function, to create a boolean vector which indicates the column names that include either **-std()** or **-mean()** in the feature name.
+First reads the feature names from the **features.txt** file into a data frame. Then uses the grepl() function, to create a boolean vector which indicates the column names that include either **-std()** or **-mean()** in the original feature name.
     
 The boolean vector is used to extract the appropriate columns from the **allFeatures** data frame, as well as the original data column names from the **featureNames** data frame.
 
 **4. Clean up the feature names to be more human readable.**
 
-Includes a **cleanColName** function that receives a column name from the original data and returns a cleaner tidy data version as described in the **Features** section above. 
+Includes a **cleanColName()** function that receives a column name from the original data and returns an easier-to-read tidy data version as described in the **Features** section above. 
     
 A for loop runs through each element of the **featureNames** vector, passes it to the **cleanColName** function, and populates a **cleanNames** vector with the returned value, maintaining order.
     
@@ -176,9 +175,9 @@ The new clean names are set as the column names of the **subsetFeatures** data f
 
 **5. Add human-readable activity names to each observation.**
 
-    The original **allLabels** data contains the activity NUMBER for each observation, but we want to change this to be the activity NAME and add it as a new column in our subset data frame. The 6 activity names are read into a table from the **activity_labels.txt** file and converted into an **activityNameVector** vector of length six, where the order of the vector matches the activity number in the **allLabels** data.
+The original **allLabels** data contains the activity NUMBER for each observation, but we want to change this to be the activity NAME and add it as a new column in our subset data frame. The 6 activity names are read into a table from the **activity_labels.txt** file and converted into an **activityNameVector** vector of length six, where the order of the vector matches the activity number in the **allLabels** data.
     
-    A for loop runs through each element of the **allLabels** number values, and a new **labelNameVector** is populated using the **activityNameVector** key that matches the number. 
+A for loop runs through each element of the **allLabels** number values, and a new **labelNameVector** is populated using the **activityNameVector** key that matches the number. 
     
     Using the **cbind()** function, the **subsetFeatures** and **activityNameVector** values are combined into a new final data frame called **subsetData**. The column name for activity names is set to "ActivityName".
 
@@ -186,13 +185,13 @@ The new clean names are set as the column names of the **subsetFeatures** data f
 
 The **allSubjects** number column is added to the **subsetData** data frame as the first column, and the column name is set to "Subject".
     
-At this point all the separate data from the multiple original data files has been combined into one tidy data set, with column names that are more human-readable than before.
+At this point all the separate data from the multiple original data files has been combined into one tidy data set, with human-readable activity names, and column names that are also more human-readable than before.
     
 **7. Create a second tidy data set that contains the average of all feature measurements, grouped by subject AND activity.**
 
 Finally, using the **plyr** library, the following code is run to find the average of all numeric columns, grouped by subject and activity:
     
-*averages <- ddply(subsetData, c("Subject", "ActivityName"), numcolwise(mean))*
+    averages <- ddply(subsetData, c("Subject", "ActivityName"), numcolwise(mean))
 
 
 
